@@ -23,32 +23,20 @@ public class Logic {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
 
-                if (!activeSituations.get(i+j)) {
-                    break;
-                }
-
                 Pair<Double> inspecting = winFuncMatrix.getElement(i, j);
-                int s = i*cols + j + 1;
+                int s = 0;
 
                 for (; s < rows*cols; s++) {
 
-                    if (!activeSituations.get(s) ||
-                            !activeSituations.get(i+j)) {
-                        break;
+                    Pair<Double> another = winFuncMatrix.getElement(s);
+
+                    if (dominationCheck(inspecting, another)) {
+                        activeSituations.put(s, false);
                     }
 
-                    else {
-
-                        Pair<Double> another = winFuncMatrix.getElement(s);
-
-                        if (dominationCheck(inspecting, another)) {
-                            activeSituations.put(s, false);
-                        }
-
-                        if (dominationCheck(another, inspecting)) {
-                            activeSituations.put(i+j, false);
-                            break;
-                        }
+                    if (dominationCheck(another, inspecting)) {
+                        activeSituations.put(i + j, false);
+                        break;
                     }
                 }
             }
