@@ -35,8 +35,7 @@ public class Logic {
                     }
 
                     if (dominationCheck(another, inspecting)) {
-                        activeSituations.put(i + j, false);
-                        break;
+                        activeSituations.put(i*cols + j, false);
                     }
                 }
             }
