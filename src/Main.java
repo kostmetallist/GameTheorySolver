@@ -2,7 +2,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Matrix m = new Matrix(11 ,11);
+        Matrix m = new Matrix(11, 11);
         Logic logic = new Logic();
 
         try {
